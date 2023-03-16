@@ -1,1 +1,17 @@
-
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ssia
+    username: SSIA
+    password: '2500533395'
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 1453
+  error:
+    include-message: ALWAYS
+    include-stacktrace: NEVER
