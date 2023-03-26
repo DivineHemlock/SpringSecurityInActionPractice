@@ -1,0 +1,27 @@
+1)
+@UserDetailsService and @PasswordEncoder are duos, meaning that if we are defining a UDS, we should define a PE
+
+2)
+having multiple UDS : we create multiple beans of UDS, then register each UDS in our security filterChain bean:
+
+write the following in the filterChain bean:
+        http.getSharedObject(AuthenticationManagerBuilder.class)
+                .userDetailsService(userDetailsService())
+                .and()
+                .userDetailsService(userDetailsService_2())
+                .passwordEncoder(passwordEncoder());
+
+note that userDetailsService and userDetailsService_2, both return beans of UserDetailsService type
+if you want to have different PE, define multiple authenticationManagerBuilders like this :
+(all of this config is done inside the filterChain bean)
+
+http.getSharedObject(AuthenticationManagerBuilder.class)
+                .userDetailsService(userDetailsService())
+                .passwordEncoder(passwordEncoder());
+http.getSharedObject(AuthenticationManagerBuilder.class)
+                .userDetailsService(userDetailsService_2())
+                .passwordEncoder(passwordEncoder_2());
+
+3)
+
+
