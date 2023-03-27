@@ -12,7 +12,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @org.springframework.context.annotation.Configuration
-public class Configuration {
+public class ConfigurationWithUDSAndPE {
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -38,12 +38,15 @@ public class Configuration {
         return userDetailsService;
     }
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 
+    // if we have multiple UDS or PE, we have to register them in the filterChain bean, if we only have one pair,
+    // spring picks them up automatically
+
+    // if UDS and PE are registered, spring automatically creates the authenticationProvider bean
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
