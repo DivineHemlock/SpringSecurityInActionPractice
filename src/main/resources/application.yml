@@ -1,7 +1,7 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/ssia
-    username: SSIA
+    username: ssia
     password: '2500533395'
     driver-class-name: org.postgresql.Driver
   jpa:
